@@ -41,8 +41,3 @@ void String_destroy(String* str)
 	str->Data = NULL;
 	str->Len = 0;
 }
-
-void trynow(String* str)
-{
-	printf("%s, %i", str->Data, str->Len);
-}
