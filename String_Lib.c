@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "String_Lib.h"
@@ -33,6 +33,12 @@ void String_append(String* str, const char* source)
 	str->Data = realloc(str->Data, str->Len + source_len + 1);
 	str->Len += source_len;
 	strcpy(str->Data, source);
+}
+
+void String_resize(String* str, size_t resize, char fill_char)
+{
+	str->Data = realloc(str->Data, str->Len + resize + 1);
+	str->Data = 
 }
 
 void String_destroy(String* str)
