@@ -15,6 +15,7 @@ void String_charp(String* dest, const char* Source);
 void String_alloc_size(String* str, size_t size);
 void String_realloc(String* str, size_t size);
 void String_append(String* str, const char* source);
+void String_resize(String* str, size_t resize, char fill_char);
 void String_destroy(String* str);
 
 #endif // !STRING_LIB
