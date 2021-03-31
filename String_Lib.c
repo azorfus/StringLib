@@ -27,6 +27,22 @@ void String_realloc(String* str, size_t size)
 	str->Data = realloc(str->Data, str->Len + size);
 }
 
+void String_fread(String* str, FILE* source)
+{
+	fseek(source, 0, SEEK_END);
+	size_t fileSize = ftell(source);
+	str->Data = malloc(fileSize + 1);
+	str->Len = fileSize + 1;
+	rewind(source);
+	fread(str->Data, 1, fileSize, source);
+	printf("%s\n", str->Data);
+}
+
+void String_fwrite_stdout(String* str)
+{
+	fwrite(str->Data, sizeof(char), str->Len, stdout);
+}
+
 void String_append(String* str, const char* source)
 {
 	size_t source_len = strlen(source);
@@ -38,7 +54,7 @@ void String_append(String* str, const char* source)
 void String_resize(String* str, size_t resize, char fill_char)
 {
 	str->Data = realloc(str->Data, str->Len + resize + 1);
-	str->Data = 
+	//str->Data =  
 }
 
 void String_destroy(String* str)
@@ -46,4 +62,9 @@ void String_destroy(String* str)
 	free(str->Data);
 	str->Data = NULL;
 	str->Len = 0;
+}
+
+void trynow(String* str)
+{
+	printf("%s, %li", str->Data, str->Len);
 }
