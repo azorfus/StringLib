@@ -16,6 +16,5 @@ void String_alloc_size(String* str, size_t size);
 void String_realloc(String* str, size_t size);
 void String_append(String* str, const char* source);
 void String_destroy(String* str);
-void trynow(String* str);
 
 #endif // !STRING_LIB
