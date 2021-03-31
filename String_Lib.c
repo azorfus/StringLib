@@ -32,7 +32,7 @@ void String_append(String* str, const char* source)
 	size_t source_len = strlen(source);
 	str->Data = realloc(str->Data, str->Len + source_len + 1);
 	str->Len += source_len;
-	strcat(str->Data, source);
+	strcpy(str->Data, source);
 }
 
 void String_destroy(String* str)
