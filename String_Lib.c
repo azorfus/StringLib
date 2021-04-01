@@ -35,7 +35,6 @@ void String_fread(String* str, FILE* source)
 	str->Len = fileSize + 1;
 	rewind(source);
 	fread(str->Data, 1, fileSize, source);
-	printf("%s\n", str->Data);
 }
 
 void String_fwrite_stdout(String* str)
@@ -43,12 +42,26 @@ void String_fwrite_stdout(String* str)
 	fwrite(str->Data, sizeof(char), str->Len, stdout);
 }
 
+void String_fwrite(String* str, FILE* dest)
+{
+	fwrite(str->Data, sizeof(char), str->Len, dest);	
+}
+
 void String_append(String* str, const char* source)
 {
 	size_t source_len = strlen(source);
 	str->Data = realloc(str->Data, str->Len + source_len + 1);
+	char* end_of_dst = str->Data  + str->Len;
 	str->Len += source_len;
-	strcpy(str->Data, source);
+	strcpy(end_of_dst, source);	
+}
+
+void String_append_string(String* str, String* source)
+{
+	str->Data = realloc(str->Data, str->Len + source->Len + 1);
+	char* end_of_dst = str->Data  + str->Len;
+	str->Len += source->Len;
+	strcpy(end_of_dst, source->Data);	
 }
 
 void String_resize(String* str, size_t resize, char fill_char)
